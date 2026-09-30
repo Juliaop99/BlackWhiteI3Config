@@ -1,0 +1,126 @@
+# ==========================
+# i3wm config julia (Ubuntu)
+# ==========================
+
+set $mod Mod4
+
+# ==========================
+#          AUTOSTART
+# ==========================
+exec --no-startup-id nm-applet
+exec --no-startup-id dunst
+exec --no-startup-id picom
+exec --no-startup-id feh --bg-scale ~/Pictures/.Wallpaper/negro-2.png
+exec_always --no-startup-id pkill -SIGKILL -x polybar; polybar --log=warning >/dev/null
+#exec_always --no-startup-id ~/.config/polybar/launch.sh
+
+# ==========================
+#          PROGRAMS
+# ==========================
+set $terminal alacritty
+set $filemanager nnn
+set $menu rofi -show drun
+
+# ==========================
+#          KEYBOARD
+# ==========================
+exec --no-startup-id setxkbmap es
+
+# ==========================
+#         APPEARANCE
+# ==========================
+font pango:JetBrainsMono Nerd Font 10
+
+gaps inner 10
+gaps outer 10
+#smart_gaps on
+#smart_borders on
+
+default_border pixel 2
+default_floating_border pixel 2
+
+# Colors
+client.focused          #ffffff #ffffff #ffffff #ffffff
+client.unfocused        #595959 #595959 #aaaaaa #595959
+client.focused_inactive #595959 #595959 #aaaaaa #595959
+client.urgent           #ff5555 #ff5555 #ffffff #ff5555
+
+# ==========================
+#         KEYBINDINGS
+# ==========================
+
+#Restart config
+bindsym $mod+Shift+r restart
+
+# Launch
+bindsym $mod+Return exec $terminal
+bindsym $mod+space exec $menu
+bindsym $mod+f exec $filemanager
+
+# Window control
+bindsym $mod+q kill
+bindsym $mod+v floating toggle
+bindsym $mod+m exit
+
+# Focus
+bindsym $mod+Left focus left
+bindsym $mod+Right focus right
+bindsym $mod+Up focus up
+bindsym $mod+Down focus down
+
+# Move windows
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Right move right
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Down move down
+
+# Layout
+bindsym $mod+j split toggle
+bindsym $mod+p layout toggle split
+
+# ==========================
+#         WORKSPACES
+# ==========================
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+# ==========================
+#        CONTROL KEYS
+# ==========================
+
+bindsym XF86AudioMute exec pamixer -t
+bindsym XF86AudioLowerVolume exec pamixer --decrease 5
+bindsym XF86AudioRaiseVolume exec pamixer --increase 5
+
+bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
+
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioPause exec playerctl play-pause
+
+# ==========================
+#        SCREENSHOTS
+# ==========================
+bindsym Print exec scrot ~/Pictures/Screenshots/screenshot_%Y-%m-%d-%H%M%S.png
+bindsym Shift+Print exec scrot -s ~/Pictures/Screenshots/screenshot_%Y-%m-%d-%H%M%S.png
